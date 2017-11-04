@@ -17,14 +17,14 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class Register
  */
-@WebServlet("/register")
-public class Register extends HttpServlet {
+@WebServlet("/registerdonor")
+public class RegisterDonor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Register() {
+    public RegisterDonor() {
         super();
         // TODO Auto-generated constructor stub
     }

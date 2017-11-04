@@ -46,31 +46,19 @@ public class SearchDonor extends HttpServlet {
 		   HttpSession session=request.getSession();  
 		   String username=(String) session.getAttribute("uname");
 		   String bloodgroup=request.getParameter("bloodgroup");
-	       
-	       
-	      
+		   
 	       try{
 	    	   
-	    	     Connection con=MySQLCon.main(null);
-	    	    
+	    	     Connection con=MySQLCon.main(null);	    	    
 	    	  
 	    	     String sql="INSERT INTO pools (owner,startTime,startFrom,upTo,via,vehicle,occupancy,availability) VALUES(?,?,?,?,?,?,?,?);";
 	     	     PreparedStatement p=con.prepareStatement(sql);
 	    	     
-	    	     p.setString(1, username);
-	    	     Timestamp timestamp = new Timestamp(date.getTime());
-	    	     p.setTimestamp(2, timestamp);
-	    	     p.setString(3, from);
-	    	     p.setString(4, to);
-	    	     p.setString(5, via);
-	    	     p.setString(6, vehicleid);
-	    	     p.setInt(7, occupancy);
-	    	     p.setInt(8, occupancy);
+	    	     p.setString(1, username);	    	         	     
 	    	     
 	    	     p.executeUpdate();
 		 		 System.out.println("Record is inserted into Pool table!");
-		 		 response.sendRedirect("CreatePoolSuccess.jsp");
-		    	   
+		 		 response.sendRedirect("CreatePoolSuccess.jsp");   	   
 	    	    
 	    	   
 	       }

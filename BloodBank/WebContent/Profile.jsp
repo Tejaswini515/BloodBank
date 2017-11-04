@@ -45,6 +45,8 @@
 				</li>
 				<li><a id="registerRecipient"
 					href="<%=application.getContextPath()%>/RegisterRecipient.jsp">Register as Recipient</a></li>
+				<li><a id="Requests"
+					href="<%=application.getContextPath()%>/Requests.jsp">Requests</a></li>
 				<li><a id="logout"
 					href="<%=application.getContextPath()%>/Logout.jsp">Logout</a></li>
 			</ul>

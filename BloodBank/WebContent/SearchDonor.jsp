@@ -41,6 +41,69 @@
 <link href="css/simple-sidebar.css" rel="stylesheet">
 
 
+
+<script type="text/javascript">
+	function myFunction() {
+		  // Declare variables 
+		  var input, filter, table, tr, td, i;
+		  input = document.getElementById("myInput");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("myTable");
+		  tr = table.getElementsByTagName("tr");
+		
+		  // Loop through all table rows, and hide those who don't match the search query
+		  for (i = 0; i < tr.length; i++) {
+		    td = tr[i].getElementsByTagName("td")[2];
+		    if (td) {
+		      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		        tr[i].style.display = "";
+		      } else {
+		        tr[i].style.display = "none";
+		      }
+		    } 
+		  }
+	}
+</script>
+
+<style>
+	* {
+	  box-sizing: border-box;
+	}
+	
+	#myInput {
+	  background-image: url('/css/searchicon.png');
+	  background-position: 10px 10px;
+	  background-repeat: no-repeat;
+	  width: 100%;
+	  font-size: 16px;
+	  padding: 12px 20px 12px 40px;
+	  border: 1px solid #ddd;
+	  margin-bottom: 12px;
+	}
+	
+	#myTable {
+	  border-collapse: collapse;
+	  width: 100%;
+	  border: 1px solid #ddd;
+	  font-size: 18px;
+	}
+	
+	#myTable th, #myTable td {
+	  text-align: left;
+	  padding: 12px;
+	}
+	
+	#myTable tr {
+	  border-bottom: 1px solid #ddd;
+	}
+	
+	#myTable tr.header, #myTable tr:hover {
+	  background-color: #f1f1f1;
+	}
+</style>
+
+
+
 </head>
 
 <body>
@@ -69,69 +132,59 @@
         
 		 <!-- Page Content -->
 		<div id="page-content-wrapper">
-		 <div class="container-fluid">
-			<div class="container">
-				<a href="#menu-toggle" style="background-color:black;color:white;" class="btn btn-default" id="menu-toggle">Pool
-					Menu</a><br>	
-				<form class="form-horizontal" id="contact-form" role="form"
-					action="<%=application.getContextPath() %>/SearchDonor" method="post">
-					<h2 align="center">Search Donors</h2>
-					
-						<div class="form-group">
-							<label class="col-sm-3 control-label" for="bloodgroup">Blood Group</label>
-							<div class="col-sm-7">
-								<select class="selectpicker form-control"
-									
-									id="bloodgroup" required="true" name="bloodgroup">
-									<option style="cursor: pointer;">Select Blood Group</option>
-									<%
-										try {
+			<div class="container-fluid">
+				<a href="#menu-toggle" style="background-color:black;color:white;" class="btn btn-default" id="menu-toggle">Blood Donation
+					Menu</a><br>
+				<h2 align="center">Search Donor</h2>	
+				<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Donor.." title="Type in a name">
+				 <table id="myTable" class="table table-bordered">
+		    		<thead>
+				      <tr>
+				        <th>Donor ID</th>
+				        <th>Name</th>
+				        <th>BloodGroup</th>
+				        <th>Email</th>
+				        <th>Phone</th>
+				      </tr>
+			    	</thead>
+			      <tbody>
+				      <tr>
+				 													
 
-											int count = 0, flag = 0;
-											Connection con = MySQLCon.main(null);
-											//String username=(String) session.getAttribute("uname");
-											String sql2 = "SELECT distinct bloodgroup FROM test.donor ;";
-											PreparedStatement p2 = con.prepareStatement(sql2);
-											ResultSet r1 = p2.executeQuery();
-											while (r1.next()) {
-									%>
-									<option style="cursor: pointer;" value =<%=r1.getString(1)%>><%=r1.getString(1)%></option>
-									<%
-										}
-
-										} catch (Exception e) {
-											e.printStackTrace();
-										}
-									%>
-
-								</select>
-
-							</div>
-						</div>
-						
-						<div class="form-group">
-						<div class="col-sm-7 col-sm-offset-3">
-							<button type="submit" class="btn btn-primary btn-block">Search</button>
-						</div>
-					</div>
-				</form>
-				<!-- /form -->
-
-				<table>
-					<th> Donor ID </th>
-					<th> Name </th>
-					<th> Blood Group </th>
-					<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					</tr>
-				</table>
-			</div>
-			<!-- ./container -->
+		<%
+	        try{
+		    	   
+	   	     Connection con=MySQLCon.main(null);
+	   	     
+	   	     //String username=(String) session.getAttribute("uname");
+	   		 String sql="select * from test.donor;";
+		     PreparedStatement p=con.prepareStatement(sql);
+	   	    
+		     ResultSet r=p.executeQuery();
+	 	    
+			     while(r.next()){
+			    	 out.println("<td>"+r.getString(1)+"</td>");
+			    	 out.println("<td>"+r.getString(2)+"</td>");			    	 
+		 	    	 out.println("<td>"+r.getString(3)+"</td>");
+		 	    	 out.println("<td>"+r.getString(4)+"</td>");		 	    	 
+		 	    	 out.println("<td>"+r.getString(5)+"</td> </tr>");
+			     } 
+	        } catch(NullPointerException n) {
+		   	   n.printStackTrace();
+		   	  
+		      } catch (Exception e) {
+		   	  
+				// TODO: handle exception
+		   	   e.printStackTrace();
+			}
+	     
+        %>
+  
+			    </tbody>
+		  </table>	
 			</div>
 		</div>
-		<!-- /#page-content-wrapper -->	
+		<!-- /#page-content-wrapper -->
 
 	</div>
 	<!-- /#wrapper -->

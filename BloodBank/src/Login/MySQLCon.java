@@ -10,7 +10,7 @@ public class MySQLCon {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			// step2 create the connection object
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "2358");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "password");
 
 			System.out.println("Connection is  established");
 			return con;
