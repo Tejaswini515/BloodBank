@@ -35,18 +35,18 @@
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a id="Profile"
-					href="<%=application.getContextPath()%>/Profile.jsp">Profile</a></li>
-				<li><a id="viewDonorMenu"
-					href="<%=application.getContextPath()%>/ViewDonor.jsp">View Donors</a></li>
-				<li><a id="searchDonorMenu"
-					href="<%=application.getContextPath()%>/SearchDonor.jsp">Search Donor</a></li>
-				<li><a id="registerDonorMenu"
-					href="<%=application.getContextPath()%>/RegisterDonor.jsp">Register as Donor</a>
+					href="<%=application.getContextPath()%>/Profile.jsp">Profile</a></li>				
+				<li><a id="DonorsMenu"
+					href="<%=application.getContextPath()%>/Donors.jsp">Donors</a></li>
+					<li><a id="RecipientsMenu"
+					href="<%=application.getContextPath()%>/Recipients.jsp">Recipients</a></li>
+				<li><a id="RegisterAsDonorMenu"
+					href="<%=application.getContextPath()%>/RegisterAsDonor.jsp">Register As Donor</a>
 				</li>
-				<li><a id="registerRecipient"
-					href="<%=application.getContextPath()%>/RegisterRecipient.jsp">Register as Recipient</a></li>
-				<li><a id="Requests"
-					href="<%=application.getContextPath()%>/Requests.jsp">Requests</a></li>
+				<li><a id="RequestForBloodMenu"
+					href="<%=application.getContextPath()%>/RequestForBlood.jsp">Request for Blood</a></li>
+				<li><a id="DonateBloodMenu"
+					href="<%=application.getContextPath()%>/DonateBlood.jsp">Donate Blood</a></li>
 				<li><a id="logout"
 					href="<%=application.getContextPath()%>/Logout.jsp">Logout</a></li>
 			</ul>

@@ -16,7 +16,7 @@
 	content="width=device-width, shrink-to-fit=no, initial-scale=1">
 <meta name="description" content="">
 
-<title>Search Donor</title>
+<title>Recipients</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -114,16 +114,18 @@
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
 				<li class="sidebar-brand"><a id="Profile"
-					href="<%=application.getContextPath()%>/Profile.jsp">Profile</a></li>
-				<li><a id="viewDonorMenu"
-					href="<%=application.getContextPath()%>/ViewDonor.jsp">View Donors</a></li>
-				<li><a id="searchDonorMenu"
-					href="<%=application.getContextPath()%>/SearchDonor.jsp">Search Donor</a></li>
-				<li><a id="registerDonorMenu"
-					href="<%=application.getContextPath()%>/RegisterDonor.jsp">Register as Donor</a>
+					href="<%=application.getContextPath()%>/Profile.jsp">Profile</a></li>				
+				<li><a id="DonorsMenu"
+					href="<%=application.getContextPath()%>/Donors.jsp">Donors</a></li>
+					<li><a id="RecipientsMenu"
+					href="<%=application.getContextPath()%>/Recipients.jsp">Recipients</a></li>
+				<li><a id="RegisterAsDonorMenu"
+					href="<%=application.getContextPath()%>/RegisterAsDonor.jsp">Register As Donor</a>
 				</li>
-				<li><a id="registerRecipient"
-					href="<%=application.getContextPath()%>/RegisterRecipient.jsp">Register as Recipient</a></li>
+				<li><a id="RequestForBloodMenu"
+					href="<%=application.getContextPath()%>/RequestForBlood.jsp">Request for Blood</a></li>
+				<li><a id="DonateBloodMenu"
+					href="<%=application.getContextPath()%>/DonateBlood.jsp">Donate Blood</a></li>				
 				<li><a id="logout"
 					href="<%=application.getContextPath()%>/Logout.jsp">Logout</a></li>
 			</ul>
@@ -135,12 +137,12 @@
 			<div class="container-fluid">
 				<a href="#menu-toggle" style="background-color:black;color:white;" class="btn btn-default" id="menu-toggle">Blood Donation
 					Menu</a><br>
-				<h2 align="center">Search Donor</h2>	
-				<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Donor.." title="Type in a name">
+				<h2 align="center">Search Recipients</h2>	
+				<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Recipient.." title="Type in a name">
 				 <table id="myTable" class="table table-bordered">
 		    		<thead>
 				      <tr>
-				        <th>Donor ID</th>
+				        <th>Recipient ID</th>
 				        <th>Name</th>
 				        <th>BloodGroup</th>
 				        <th>Email</th>
@@ -157,7 +159,7 @@
 	   	     Connection con=MySQLCon.main(null);
 	   	     
 	   	     //String username=(String) session.getAttribute("uname");
-	   		 String sql="select * from test.donor;";
+	   		 String sql="select * from test.recipient;";
 		     PreparedStatement p=con.prepareStatement(sql);
 	   	    
 		     ResultSet r=p.executeQuery();
