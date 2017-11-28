@@ -53,7 +53,7 @@
 		
 		  // Loop through all table rows, and hide those who don't match the search query
 		  for (i = 0; i < tr.length; i++) {
-		    td = tr[i].getElementsByTagName("td")[2];
+		    td = tr[i].getElementsByTagName("td")[4];
 		    if (td) {
 		      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
 		        tr[i].style.display = "";
@@ -144,9 +144,12 @@
 				      <tr>
 				        <th>Recipient ID</th>
 				        <th>Name</th>
-				        <th>BloodGroup</th>
 				        <th>Email</th>
 				        <th>Phone</th>
+				        <th>BloodGroup</th>
+				        <th>Date</th>
+				        <th>City</th>
+				        <th>Quantity</th>				       
 				      </tr>
 			    	</thead>
 			      <tbody>
@@ -168,8 +171,11 @@
 			    	 out.println("<td>"+r.getString(1)+"</td>");
 			    	 out.println("<td>"+r.getString(2)+"</td>");			    	 
 		 	    	 out.println("<td>"+r.getString(3)+"</td>");
-		 	    	 out.println("<td>"+r.getString(4)+"</td>");		 	    	 
-		 	    	 out.println("<td>"+r.getString(5)+"</td> </tr>");
+		 	    	 out.println("<td>"+r.getString(4)+"</td>");
+		 	    	 out.println("<td>"+r.getString(5)+"</td>");
+		 	    	 out.println("<td>"+r.getString(6)+"</td>");
+		 	    	 out.println("<td>"+r.getString(7)+"</td>");		 	    	
+		 	    	 out.println("<td>"+r.getString(8)+"</td> </tr>");
 			     } 
 	        } catch(NullPointerException n) {
 		   	   n.printStackTrace();

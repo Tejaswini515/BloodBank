@@ -1,5 +1,13 @@
+<%@page import="Login.MySQLCon"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+<%@page import="java.sql.*"%>
+<%@page import="java.io.Console"%>	
+<% if(session.getAttribute("uname")!=null)
+{
+    
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -67,26 +75,43 @@
 					Menu</a><br>
             <form class="form-horizontal" id="contact-form"  action="<%=application.getContextPath() %>/requestforblood" method ="post">
                 <h2 align="center">Request For Blood</h2>
-                 <div class="form-group">
+                <%
+						try {
+
+							Connection con = MySQLCon.main(null);
+							String username=(String) session.getAttribute("uname");
+							String sql2 = "SELECT name, email, phone FROM test.users where username ='"+username+"';";
+							PreparedStatement p2 = con.prepareStatement(sql2);
+							ResultSet r1 = p2.executeQuery();
+							while (r1.next()) {
+				%>
+					<div class="form-group">
                     <label for="Name" class="col-sm-3 control-label">Name</label>
                     <div class="col-sm-9">
-                        <input type="text" id="name" required="true" name="name" placeholder="Name" class="form-control" autofocus>
+                        <input type="text" id="name" required="true" name="name" value= <%= r1.getString(1) %> class="form-control" readonly>
                         
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-sm-3 control-label">Email</label>
                     <div class="col-sm-9">
-                        <input type="text" id="email" required="true" name="email" placeholder="Email" class="form-control" autofocus>
+                        <input type="text" id="email" required="true" name="email" value= <%= r1.getString(2) %> class="form-control" readonly>
                         
                     </div>
                 </div>                
                 <div class="form-group">
                     <label for="phone" class="col-sm-3 control-label">Phone Number</label>
                     <div class="col-sm-9">
-                        <input type="number" id="phone" required="true" name="phone" placeholder="Phone Number" class="form-control">
+                        <input type="number" id="phone" required="true" name="phone" value= <%= r1.getString(3) %> class="form-control" readonly>
                     </div>
                 </div>
+				<%
+						}
+
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+				 %>
                <div class="form-group">
 					<label class="col-sm-3 control-label" for="bloodgroup">BloodGroup</label>
 					<div class="col-sm-7">
@@ -104,6 +129,27 @@
 						</select>
 					</div>
 				</div>
+				
+				<div class="form-group">
+                    <label for="date" class="col-sm-3 control-label">Date</label>
+                    <div class="col-sm-9">
+                        <input type="date" id="date" required="true" name="date" placeholder="Date" class="form-control">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="city" class="col-sm-3 control-label">City</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="city" required="true" name="city" placeholder="city" class="form-control">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="quantity" class="col-sm-3 control-label">Quantity</label>
+                    <div class="col-sm-9">
+                        <input type="number" id="quantity" required="true" name="quantity" placeholder="quantity" class="form-control">
+                    </div>
+                </div>
                
                 <div class="form-group">
                     <div class="col-sm-9 col-sm-offset-3">
@@ -127,3 +173,12 @@
     
 </body>
 </html>
+<% }
+else
+{
+     
+      response.sendRedirect("index.jsp");
+
+ 
+}
+%>

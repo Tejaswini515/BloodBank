@@ -16,7 +16,7 @@
 	content="width=device-width, shrink-to-fit=no, initial-scale=1">
 <meta name="description" content="">
 
-<title>Search Donor</title>
+<title>Donate Blood</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -53,7 +53,7 @@
 		
 		  // Loop through all table rows, and hide those who don't match the search query
 		  for (i = 0; i < tr.length; i++) {
-		    td = tr[i].getElementsByTagName("td")[2];
+		    td = tr[i].getElementsByTagName("td")[4];
 		    if (td) {
 		      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
 		        tr[i].style.display = "";
@@ -125,7 +125,7 @@
 				<li><a id="RequestForBloodMenu"
 					href="<%=application.getContextPath()%>/RequestForBlood.jsp">Request for Blood</a></li>
 				<li><a id="DonateBloodMenu"
-					href="<%=application.getContextPath()%>/DonateBlood.jsp">Donate Blood</a></li>
+					href="<%=application.getContextPath()%>/DonateBlood.jsp">Donate Blood</a></li>				
 				<li><a id="logout"
 					href="<%=application.getContextPath()%>/Logout.jsp">Logout</a></li>
 			</ul>
@@ -137,18 +137,19 @@
 			<div class="container-fluid">
 				<a href="#menu-toggle" style="background-color:black;color:white;" class="btn btn-default" id="menu-toggle">Blood Donation
 					Menu</a><br>
-				<h2 align="center">Search Donor</h2>	
-				<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Donor.." title="Type in a name">
+				<h2 align="center">Donate </h2>	
+				<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Recipient.." title="Type in a name">
 				 <table id="myTable" class="table table-bordered">
 		    		<thead>
 				      <tr>
-				        <th>Donor ID</th>
+				        <th>Recipient ID</th>
 				        <th>Name</th>
-				        <th>BloodGroup</th>
 				        <th>Email</th>
 				        <th>Phone</th>
+				        <th>BloodGroup</th>
 				        <th>Date</th>
 				        <th>City</th>
+				        <th>Quantity</th>				       
 				      </tr>
 			    	</thead>
 			      <tbody>
@@ -161,7 +162,7 @@
 	   	     Connection con=MySQLCon.main(null);
 	   	     
 	   	     //String username=(String) session.getAttribute("uname");
-	   		 String sql="select * from test.donor;";
+	   		 String sql="select * from test.recipient;";
 		     PreparedStatement p=con.prepareStatement(sql);
 	   	    
 		     ResultSet r=p.executeQuery();
@@ -173,7 +174,9 @@
 		 	    	 out.println("<td>"+r.getString(4)+"</td>");
 		 	    	 out.println("<td>"+r.getString(5)+"</td>");
 		 	    	 out.println("<td>"+r.getString(6)+"</td>");
-		 	    	 out.println("<td>"+r.getString(7)+"</td> </tr>");
+		 	    	 out.println("<td>"+r.getString(7)+"</td>");		 	    	
+		 	    	 out.println("<td>"+r.getString(8)+"</td>");
+		 	    	 out.println("<td><i class='fa fa-times' aria-hidden='true'style='color:red;'></i></td> </tr>");
 			     } 
 	        } catch(NullPointerException n) {
 		   	   n.printStackTrace();

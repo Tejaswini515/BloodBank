@@ -56,7 +56,7 @@
 		<div id="page-content-wrapper">
 			<div class="container-fluid">
 				<div class="container">
-					<a href="#menu-toggle" style="background-color:black;color:white;" class="btn btn-default" id="menu-toggle">Pool
+					<a href="#menu-toggle" style="background-color:black;color:white;" class="btn btn-default" id="menu-toggle">
 					Menu</a><br>
 					<form class="form-horizontal" id="contact-form" role="form"
 						action="<%=application.getContextPath() %>/Profile" method="post">
